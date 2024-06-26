@@ -13,12 +13,14 @@ class CreateListingsTable extends Migration
             $table->string('title');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('keyword_id'); // New keyword_id column
             $table->decimal('price', 8, 2);
-            $table->text('keywords')->nullable();
+            $table->string('image_url');
             $table->timestamps();
-
+            
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('keyword_id')->references('id')->on('keywords')->onDelete('cascade'); // Foreign key constraint
         });
     }
 

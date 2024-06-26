@@ -1,0 +1,31 @@
+/* Styles for the listings show page */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.listing-detail img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.listing-detail h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.listing-detail p {
+    margin: 10px 0;
+}
+
+.actions {
+    margin-bottom: 20px;
+}
+
+.actions a,
+.actions form button {
+    margin-right: 10px;
+}

@@ -10,16 +10,19 @@ class Review extends Model
     use HasFactory;
 
     protected $fillable = [
-        'listing_id', 'user_id', 'content', 'rating',
+        'listing_id',
+        'user_id',
+        'rating',
+        'content'
     ];
-
-    public function listing()
-    {
-        return $this->belongsTo(Listing::class);
-    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function listing()
+    {
+        return $this->belongsTo(Listing::class);
     }
 }
