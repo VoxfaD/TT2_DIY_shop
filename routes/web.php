@@ -8,6 +8,11 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LocaleController;
+
+Route::get('locale/{lang}', [LocaleController::class, 'setLang'])->name('locale.switch');
+
+Route::resource('listings', ListingController::class);
 
 Route::get('/', [ListingController::class, 'index'])->name('listings.index');
 Route::get('/listings/{id}', [ListingController::class, 'show'])->name('listings.show');

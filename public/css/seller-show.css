@@ -1,12 +1,30 @@
+/* Enhanced Styles for the seller show page */
+
+body {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/006/663/095/non_2x/shopping-concept-cartons-or-paper-boxes-and-shopping-bag-in-red-shopping-cart-on-pink-background-online-shopping-consumers-can-shop-from-home-and-delivery-service-with-copy-space-free-photo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 30px;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
     text-align: center;
 }
 
 .profile {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .profile img {
@@ -14,15 +32,18 @@
     border-radius: 50%;
     display: block;
     margin: 0 auto 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile p {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
 }
 
 .listings {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     justify-content: center;
 }
@@ -30,30 +51,69 @@
 .listing {
     border: 1px solid #ddd;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-sizing: border-box;
     text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .listing img {
     max-width: 100%;
-    height: auto;
+    height: 250px;
     display: block;
-    margin: 0 auto 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 .listing h2 {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 10px;
+    color: #333;
 }
 
 .listing p {
     margin: 5px 0;
+    font-size: 16px;
+    color: #666;
 }
 
 .actions {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.actions a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff00b7;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.actions a:hover {
+    background-color: #c768bf;
+}
+
+.logo a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.logo a:hover {
+    color: #9f4572;
 }

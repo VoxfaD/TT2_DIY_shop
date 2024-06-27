@@ -32,4 +32,8 @@ class Listing extends Model
     {
         return $this->hasMany(Review::class);
     }
+    public function getImageUrlAttribute($value)
+    {
+        return $value ? asset('storage/' . $value) : null;
+    }
 }
