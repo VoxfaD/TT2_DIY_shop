@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Listing::class);
     }
+
+    public function getProfilePictureAttribute($value)
+    {
+        return $value ? asset('storage/' . $value) : asset('images/default_profile_picture.png');
+    }
 }

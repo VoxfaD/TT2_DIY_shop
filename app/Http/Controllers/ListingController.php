@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Keyword;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\App;
 
 class ListingController extends Controller
 {
@@ -49,22 +51,25 @@ class ListingController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'user_id' => 'required',
             'keyword_id' => 'required',
             'price' => 'required|numeric',
-            'image_url' => 'required|url',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required'
         ]);
 
+        $imagePath = $request->file('image')->store('images', 'public');
+
         Listing::create([
             'title' => $request->title,
-            'user_id' => auth()->id(),
+            'user_id' => $request->user_id,
             'keyword_id' => $request->keyword_id,
             'price' => $request->price,
-            'image_url' => $request->image_url,
-            'description' => $request->description,
+            'image_url' => $imagePath,
+            'description' => $request->description
         ]);
 
-        return redirect()->route('listings.index')->with('success', 'Listing created successfully.');
+        return redirect()->route('listings.index');
     }
 
     public function edit($id)
@@ -78,16 +83,30 @@ class ListingController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'user_id' => 'required',
             'keyword_id' => 'required',
             'price' => 'required|numeric',
-            'image_url' => 'required|url',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'description' => 'required'
         ]);
 
         $listing = Listing::findOrFail($id);
-        $listing->update($request->all());
+        $listing->title = $request->title;
+        $listing->user_id = $request->user_id;
+        $listing->keyword_id = $request->keyword_id;
+        $listing->price = $request->price;
+        $listing->description = $request->description;
 
-        return redirect()->route('listings.show', $listing->id)->with('success', 'Listing updated successfully.');
+        if ($request->hasFile('image')) {
+            if ($listing->image_url) {
+                Storage::delete('public/' . $listing->image_url);
+            }
+            $listing->image_url = $request->file('image')->store('images', 'public');
+        }
+
+        $listing->save();
+
+        return redirect()->route('listings.show', $listing->id);
     }
 
     public function destroy($id)
@@ -95,6 +114,6 @@ class ListingController extends Controller
         $listing = Listing::findOrFail($id);
         $listing->delete();
 
-        return redirect()->route('listings.index')->with('success', 'Listing deleted successfully.');
+        return redirect()->route('listings.index');
     }
 }

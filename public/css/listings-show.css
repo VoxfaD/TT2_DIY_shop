@@ -1,31 +1,185 @@
-/* Styles for the listings show page */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+/* Enhanced Styles for the listings show page */
+
+body {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/006/663/095/non_2x/shopping-concept-cartons-or-paper-boxes-and-shopping-bag-in-red-shopping-cart-on-pink-background-online-shopping-consumers-can-shop-from-home-and-delivery-service-with-copy-space-free-photo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
 }
 
+.container {
+    padding: 30px;
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
 
+}
+.listing-detail {
+    text-align: left;
+}
 .listing-detail img {
     max-width: 100%;
+    max-height: 350px;
     height: auto;
     display: block;
+    border-radius: 10px;
+}
+
+.listing-detail .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .listing-detail h1 {
-    font-size: 24px;
+    font-size: 28px;
     margin-bottom: 20px;
+    color: #ff6347;
 }
 
 .listing-detail p {
     margin: 10px 0;
+    line-height: 1.6;
 }
 
 .actions {
-    margin-bottom: 20px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .actions a,
 .actions form button {
-    margin-right: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff00b7;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.actions a:hover,
+.actions form button:hover {
+    background-color: #c768bf;
+}
+
+.logo a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.logo a:hover {
+    color: #9f4572;
+}
+
+.reviews {
+    margin-top: 50px;
+}
+
+
+
+.reviews h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.add-review {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-review h2 {
+    margin-bottom: 20px;
+    color: #b5467f;
+}
+
+.add-review form div {
+    margin-bottom: 15px;
+}
+
+.add-review label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-review select,
+.add-review textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-review button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-review button:hover {
+    background-color: #218838;
+}
+
+.review {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review p {
+    margin: 0 0 10px;
+}
+
+.review p strong {
+    color: #333;
+}
+
+.review form button {
+    margin-top: 10px;
+    background-color: #dc3545;
+}
+
+.review form button:hover {
+    background-color: #c82333;
+}
+
+a{
+    text-decoration: none;
+}
+
+p a {
+    text-decoration: none;
+    font-weight:bold ;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+p a:hover {
+    color: #490829;
 }

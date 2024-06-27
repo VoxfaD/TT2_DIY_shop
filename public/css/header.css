@@ -1,3 +1,5 @@
+/* Header Styles */
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -6,21 +8,68 @@
     background-color: #f8f9fa;
     position: fixed;
     top: 0;
-    width: 97%;
+    width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    flex: 1;
 }
 
 .header .auth-links {
     display: flex;
     align-items: center;
+    flex: 1;
 }
 
 .header .auth-links a,
 .header .auth-links form {
     margin-left: 10px;
+    text-decoration: none;
+    color: #6c1262;
+    font-weight: bold;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 10px 15px;
+    border-radius: 5px;
 }
 
-.container {
-    margin-top: 60px; /* To ensure content does not overlap with the fixed header */
+.header .auth-links a:hover,
+.header .auth-links form:hover {
+    color: #6c1262;
+    background-color: #e2e6ea;
 }
+
+.header .auth-links a,
+.header .auth-links form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.header .language-switcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.header .language-switcher a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #6c1262;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.header .language-switcher a:hover {
+    color: #be73b5;
+}
+
+.listing a {
+    text-decoration: none;
+    font-weight:bold ;
+    color: inherit;
+    transition: color 0.3s;
+}
+

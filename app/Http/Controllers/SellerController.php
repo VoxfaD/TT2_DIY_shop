@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class SellerController extends Controller
 {
@@ -24,12 +25,22 @@ class SellerController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'profile_picture' => 'required|url',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user->name = $request->name;
+        $user->description = $request->description;
 
-        return redirect()->route('seller.show', $user->id)->with('success', 'Profile updated successfully.');
+        if ($request->hasFile('profile_picture')) {
+            if ($user->profile_picture) {
+                Storage::delete('public/' . $user->profile_picture);
+            }
+            $user->profile_picture = $request->file('profile_picture')->store('profile_pictures', 'public');
+        }
+
+        $user->save();
+
+        return redirect()->route('seller.show', $user->id);
     }
 }

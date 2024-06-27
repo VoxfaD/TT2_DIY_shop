@@ -5,32 +5,49 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
     public function run()
     {
+         // Ensure profile pictures directory exists
+         if (!Storage::disk('public')->exists('profile_pictures')) {
+            Storage::disk('public')->makeDirectory('profile_pictures');
+        }
 
 
         User::firstOrCreate(
-            ['email' => 'jane@example.com'],
+            ['email' => 'Leah@example.com'],
             [
-                'name' => 'Jane Smith', 
-                'password' => Hash::make('password'),
+                'name' => 'Leah Pearl', 
+                'password' => Hash::make('pass'),
                 'role' => User::ROLE_VENDOR,
-                'profile_picture' => 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Jane',
-                'description' => 'Jane loves crafting and selling DIY kits for enthusiasts.'
+                'profile_picture' => $this->copyProfilePictureToStorage('Leah.jpg'),
+                'description' => 'Hiii! I am Leah, i love making fashionable earrings and necklaces hope you find the one that speaks to you the most! :)'
             ]
         );
 
         User::firstOrCreate(
-            ['email' => 'jasminelin@example.com'],
+            ['email' => 'jasmine@example.com'],
             [
-                'name' => 'Jasmine Lin', 
-                'password' => Hash::make('password'),
+                'name' => 'Jasmine Leaf', 
+                'password' => Hash::make('pass'),
                 'role' => User::ROLE_VENDOR,
-                'profile_picture' => 'https://via.placeholder.com/150/FFFF00/000000?text=Jasmine',
-                'description' => 'Jasmine is an expert in home decor and DIY interior design.'
+                'profile_picture' => $this->copyProfilePictureToStorage('Jasmine.jpg'),
+                'description' => 'I love flowers (favourite one is Jasmines) and my designs incorporate floral designs'
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'Vicky@example.com'],
+            [
+                'name' => 'Vicky Oak', 
+                'password' => Hash::make('pass'),
+                'role' => User::ROLE_VENDOR,
+                'profile_picture' => $this->copyProfilePictureToStorage('Vicky.jpg'),
+                'description' => 'Heyo! I am Vicky and I love knitting sweaters and scarfs in my past time, hope you like what you see!'
             ]
         );
 
@@ -40,7 +57,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin User', 
                 'password' => Hash::make('adminpassword'),
                 'role' => User::ROLE_ADMIN,
-                'profile_picture' => 'https://via.placeholder.com/150/000000/FFFFFF?text=Admin',
+                'profile_picture' => $this->copyProfilePictureToStorage('CP287-.png'),
                 'description' => 'Admin user with full access to manage the application.'
             ]
         );
@@ -48,11 +65,11 @@ class UserSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'john@example.com'],
             [
-                'name' => 'John Doe', 
+                'name' => 'Johnny', 
                 'password' => Hash::make('password'),
                 'role' => User::ROLE_USER,
                 'profile_picture' => 'https://via.placeholder.com/150/0000FF/808080?text=John',
-                'description' => 'John is a professional DIYer with a passion for creating unique projects.'
+                'description' => 'null'
             ]
         );
 
@@ -64,5 +81,13 @@ class UserSeeder extends Seeder
                 'role' => User::ROLE_VISITOR,
             ]
         );
+    }
+
+    private function copyProfilePictureToStorage($imageName)
+    {
+        $sourcePath = database_path('seeders/images/pfp/' . $imageName);
+        $destinationPath = 'profile_pictures/' . Str::random(10) . '_' . $imageName;
+        Storage::disk('public')->put($destinationPath, file_get_contents($sourcePath));
+        return $destinationPath;
     }
 }
