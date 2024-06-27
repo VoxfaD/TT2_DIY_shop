@@ -10,17 +10,22 @@ class Listing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'product_id', 'user_id', 'price', 'keywords', 'image_url',
+        'title',
+        'user_id',
+        'keyword_id',
+        'price',
+        'image_url',
+        'description',
     ];
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function keyword()
+    {
+        return $this->belongsTo(Keyword::class);
     }
 
     public function reviews()

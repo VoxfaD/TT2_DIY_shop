@@ -2,30 +2,49 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
-    protected $fillable = ['name', 'email', 'password', 'role']; // Adding a role field
+    const ROLE_VISITOR = 'visitor';
+    const ROLE_USER = 'user';
+    const ROLE_VENDOR = 'vendor';
+    const ROLE_ADMIN = 'admin';
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role',
+        'profile_picture',
+        'description',
+    ];
 
-    public function products()
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function isAdmin()
     {
-        return $this->hasMany(Product::class);
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isVendor()
+    {
+        return $this->role === self::ROLE_VENDOR;
     }
 
     public function listings()
     {
         return $this->hasMany(Listing::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
     }
 }
